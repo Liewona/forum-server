@@ -20,11 +20,11 @@
 
     <dependencies>
 
-        <dependency>
-            <groupId>it.source</groupId>
-            <artifactId>ValidateCode</artifactId>
-            <version>1.0</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>it.source</groupId>-->
+<!--            <artifactId>ValidateCode</artifactId>-->
+<!--            <version>1.0</version>-->
+<!--        </dependency>-->
 
         <dependency>
             <groupId>org.projectlombok</groupId>
