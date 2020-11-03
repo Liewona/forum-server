@@ -16,5 +16,5 @@ public interface DiscussMapper {
     List<DiscussDto> selectOnPage(int start, int limit);
 
     @Insert("INSERT INTO TB_DISCUSS(TITLE,CONTENT,CREATE_TIME,UID,CLICK_COUNT) VALUES(#{title},#{content},#{createTime},#{uid},#{clickCount})")
-    void addDiscuss(Discuss discuss);
+    int addDiscuss(Discuss discuss);
 }

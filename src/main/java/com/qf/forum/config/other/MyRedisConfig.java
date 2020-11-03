@@ -16,8 +16,10 @@ import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.RedisSerializationContext;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
+import org.springframework.stereotype.Component;
 
 import java.time.Duration;
+
 
 @Configuration
 public class MyRedisConfig {
@@ -25,7 +27,7 @@ public class MyRedisConfig {
     private Duration ttl = Duration.ofSeconds(120);
 
     @Bean
-    public RedisCacheManager carCacheManager(RedisConnectionFactory factory) {
+    public RedisCacheManager cacheManager(RedisConnectionFactory factory) {
         RedisCacheWriter writer = RedisCacheWriter.nonLockingRedisCacheWriter(factory);
 
 //        FastJsonRedisSerializer<Object> serializer = new FastJsonRedisSerializer<>(Object.class);  //使用fastjson序列化
@@ -46,7 +48,7 @@ public class MyRedisConfig {
 
     @ConditionalOnMissingBean(name = "redisTemplate")
     @Bean
-    public RedisTemplate<Object, Object> carRedisTemplate(RedisConnectionFactory factory) {
+    public RedisTemplate<Object, Object> redisTemplate(RedisConnectionFactory factory) {
         RedisTemplate<Object, Object> redisTemplate = new RedisTemplate<>();
 
         FastJsonRedisSerializer<Object> serializer = new FastJsonRedisSerializer<>(Object.class);
