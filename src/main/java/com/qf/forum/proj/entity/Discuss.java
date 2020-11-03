@@ -4,6 +4,8 @@ package com.qf.forum.proj.entity;
  *   Date = 2020/11/1 14:19
  */
 
+import com.qf.forum.utils.CommUtil;
+
 public class Discuss {
 
     protected int id;
@@ -12,6 +14,16 @@ public class Discuss {
     protected String createTime;
     protected int uid;
     protected int clickCount;
+
+    public Discuss() {
+    }
+
+    public Discuss(String title, String content, int uid) {
+        this.title = title;
+        this.content = content;
+        this.uid = uid;
+        this.createTime = CommUtil.getNowDateTime();
+    }
 
     public int getId() {
         return id;

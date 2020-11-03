@@ -5,10 +5,14 @@ package com.qf.forum.proj.service;
  */
 
 import com.qf.forum.proj.dto.DiscussDto;
+import com.qf.forum.proj.entity.Discuss;
+import com.qf.forum.proj.result.Result;
 
 import java.util.List;
 
 public interface DiscussService {
 
     List<DiscussDto> selectOnPage(int page, int limit);
+
+    void addDiscuss(Result rst, Discuss discuss);
 }

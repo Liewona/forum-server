@@ -1,5 +1,6 @@
 package com.qf.forum;
 
+import com.qf.forum.utils.StringUtils;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -11,6 +12,7 @@ class ForumServerApplicationTests {
 
     @Test
     void contextLoads() {
+//        System.out.println(StringUtils.upPath);
     }
 
 }
