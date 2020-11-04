@@ -2,15 +2,13 @@ package com.qf.forum.proj.controller;
 
 import com.qf.forum.config.aspect.annotation.LoginCheck;
 import com.qf.forum.proj.dto.UserDto;
-import com.qf.forum.proj.dto.UserEditDto;
+import com.qf.forum.proj.dto.EditDto;
 import com.qf.forum.proj.result.ResultData;
 import com.qf.forum.proj.service.UserService;
-import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import java.lang.annotation.Repeatable;
 
 @RestController
 @RequestMapping("/user")
@@ -54,7 +52,7 @@ public class UserController {
 
     @LoginCheck
     @RequestMapping(value = "/",method = RequestMethod.PATCH)
-    public ResultData updateUser(HttpServletRequest request,@RequestBody UserEditDto userEditDto){
+    public ResultData updateUser(HttpServletRequest request,@RequestBody EditDto userEditDto){
         return userService.update(userEditDto);
     }
 

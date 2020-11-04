@@ -1,7 +1,7 @@
 package com.qf.forum.proj.service.impl;
 
 import com.qf.forum.proj.dto.UserDto;
-import com.qf.forum.proj.dto.UserEditDto;
+import com.qf.forum.proj.dto.EditDto;
 import com.qf.forum.proj.entity.UserAccount;
 import com.qf.forum.proj.mapper.UserMapper;
 import com.qf.forum.proj.result.ResultData;
@@ -49,7 +49,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public ResultData update(UserEditDto userEditDto) {
+    public ResultData update(EditDto userEditDto) {
         userMapper.update(userEditDto.getId(),userEditDto.getField(),userEditDto.getVal());
         return new ResultData("200","修改完成",null);
     }

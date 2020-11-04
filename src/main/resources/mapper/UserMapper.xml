@@ -33,7 +33,7 @@
             )
         </if>
     </select>
-    <select id="update" resultType="com.qf.forum.proj.dto.UserEditDto">
+    <select id="update" resultType="com.qf.forum.proj.dto.EditDto">
         update TB_USER
         set
         <if test="field == 'uname'">

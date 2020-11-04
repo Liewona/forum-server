@@ -1,6 +1,6 @@
 package com.qf.forum.proj.dto;
 
-public class UserEditDto {
+public class EditDto {
     protected String id;
     protected String field;
     protected String val;
