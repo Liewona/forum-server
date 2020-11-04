@@ -22,21 +22,23 @@ public class LoginController {
     private LoginService loginService;
 
     @RequestMapping(value = "/code" ,method = RequestMethod.GET)
-    public void code(HttpServletRequest request, HttpServletResponse response){
-        loginService.getCode(request,response);
+    public void code(HttpServletRequest request, HttpServletResponse response,String uuid){
+        //System.out.println(uuid);
+        loginService.getCode(request,response,uuid);
     }
 
     @ResponseBody
     @RequestMapping(value = "/manger",method = RequestMethod.GET)
-    public ResultData loginByManager(HttpServletRequest request, String account,String password,String code){
-        return loginService.loginByManager(request,account,password,code);
+    public ResultData loginByManager(HttpServletRequest request, String account,String password,String uuid,String code){
+        return loginService.loginByManager(request,account,password,code,uuid);
 
     }
 
     @ResponseBody
     @RequestMapping(value = "/user",method = RequestMethod.GET)
-    public ResultData loginByUser(HttpServletRequest request,String account,String password, String code){
-        return loginService.loginByUser(request,account,password,code);
+    public ResultData loginByUser(HttpServletRequest request,String account,String password, String code,String uuid){
+        //System.out.println(uuid);
+        return loginService.loginByUser(request,account,password,code,uuid);
     }
 
 }

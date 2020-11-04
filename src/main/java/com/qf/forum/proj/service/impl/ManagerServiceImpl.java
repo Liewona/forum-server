@@ -13,13 +13,5 @@ public class ManagerServiceImpl implements ManagerService {
     @Autowired
     ManagerMapper managerMapper;
 
-    @Override
-    public boolean registe(Manager manager) {
-        Manager manager1 = managerMapper.select(manager.getAccount());
-        if (manager1 != null)
-            return false;
-        String password = Md5Util.getMd5(manager.getAccount(),manager.getPassword());
-        managerMapper.insert(manager.getAccount(),manager.getName(),password,manager.getImg());
-        return true;
-    }
+
 }

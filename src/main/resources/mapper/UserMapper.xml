@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qf.forum.proj.mapper.UserMapper">
+
+    <select id="like" resultType="com.qf.forum.proj.dto.UserDto">
+        select TB_USER.ID,USERNAME,UNAME,PHONE,REGISTER_TIME as REGISTERTIME,AGE,SEX,IMG
+        from TB_USER,TB_ACCOUNT
+        where TB_USER.ID = TB_ACCOUNT.UID
+        <if test="uname =='' and phone != '' ">
+            and PHONE like concat("%",#{phone},"%")
+        </if>
+        <if test="uname != '' and phone == ''">
+            and UNAME like concat("%",#{uname},"%")
+        </if>
+        <if test="uname != '' and  phone != ''">
+            and (
+            UNAME like concat("%",#{uname},"%") or PHONE like concat("%",#{phone},"%")
+            )
+        </if>
+        limit #{page}, #{limit}
+    </select>
+    <select id="likeCount" resultType="long">
+        select count(USERNAME) from TB_USER,TB_ACCOUNT where TB_USER.ID = TB_ACCOUNT.UID
+        <if test="uname =='' and phone != '' ">
+            and PHONE like concat("%",#{phone},"%")
+        </if>
+        <if test="uname != '' and phone == ''">
+            and UNAME like concat("%",#{uname},"%")
+        </if>
+        <if test="uname != '' and  phone != ''">
+            and (
+            UNAME like concat("%",#{uname},"%") or PHONE like concat("%",#{phone},"%")
+            )
+        </if>
+    </select>
+    <select id="update" resultType="com.qf.forum.proj.dto.UserEditDto">
+        update TB_USER
+        set
+        <if test="field == 'uname'">
+            UNAME = #{val}
+        </if>
+        <if test="field == 'phone'">
+            PHONE = #{val}
+        </if>
+        <if test="field == 'age'">
+            AGE = #{val}
+        </if>
+        where ID = #{id}
+    </select>
+</mapper>
