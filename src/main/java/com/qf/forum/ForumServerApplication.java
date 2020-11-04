@@ -10,9 +10,8 @@ import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
-//@ComponentScan(basePackages = {"com.qf.forum.config.other"})
+
 @EnableCaching
-//@EnableConfigurationProperties
 @MapperScan("com.qf.forum.proj.mapper")
 @CrossOrigin
 @SpringBootApplication

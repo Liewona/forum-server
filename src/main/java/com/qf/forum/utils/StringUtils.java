@@ -17,7 +17,7 @@ public class StringUtils {
     private StringUtils() { }
 
     static {
-        ResourceBundle resource = ResourceBundle.getBundle("resources/string");
+        ResourceBundle resource = ResourceBundle.getBundle("properties/string");
         UP_PATH = resource.getString("up-path");
 
     }

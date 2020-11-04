@@ -13,7 +13,8 @@ spring:
         time-zone: GMT+8
         date-format: yyyy-MM-dd HH:mm:ss
     redis:
-        host: 124.71.162.78
+#        host: 124.71.162.78
+        host: 127.0.0.1
 server:
     port: 8848
 

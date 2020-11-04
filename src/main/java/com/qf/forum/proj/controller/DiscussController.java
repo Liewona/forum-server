@@ -6,6 +6,7 @@ package com.qf.forum.proj.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.qf.forum.proj.dto.DiscussDto;
+import com.qf.forum.proj.entity.Account;
 import com.qf.forum.proj.entity.Discuss;
 import com.qf.forum.proj.result.Result;
 import com.qf.forum.proj.result.ResultData;
@@ -15,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 
@@ -49,10 +51,12 @@ public class DiscussController {
      * @return
      */
     @PostMapping
-    public Result addDiscuss(@RequestBody JSONObject body) {
+    public Result addDiscuss(@RequestBody JSONObject body, HttpServletRequest request) {
         Result rst = new Result();
+
+        Account account = (Account) request.getSession().getAttribute("uaccount");
+        int uid = account.getUid();
         String content = body.getString("content");
-        int uid = body.getIntValue("id");
         String title = body.getString("title");
         Discuss discuss = new Discuss(title, content, uid);
         discussService.addDiscuss(rst, discuss);

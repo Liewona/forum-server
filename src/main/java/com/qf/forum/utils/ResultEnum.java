@@ -9,6 +9,7 @@ public enum ResultEnum {
 
     SUCCESS("0000", "success"),
     ERROR("0001", "error"),
+    LOGIN_OUT_TIME("3100", "登陆超时, 请重新登陆"),
     UNKNOWN("9999", "unknown error");
 
 

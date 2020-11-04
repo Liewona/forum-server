@@ -9,6 +9,7 @@ import org.springframework.data.redis.core.RedisTemplate;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.ResourceBundle;
 
 @ComponentScan(basePackages = {"com.qf.forum.config.other"})
 @SpringBootTest
@@ -23,6 +24,10 @@ class ForumServerApplicationTests {
 
         redisTemplate.opsForValue().set("xjs", "哈哈哈我是熊劲松");
         System.out.println(redisTemplate.opsForValue().get("xjs"));
+
+
+        ResourceBundle resource = ResourceBundle.getBundle("properties/string");
+        System.out.println(resource.getString("up-path"));
 
     }
 

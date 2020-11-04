@@ -28,6 +28,9 @@ public class MyRedisConfig {
 
     @Bean
     public RedisCacheManager cacheManager(RedisConnectionFactory factory) {
+
+//        System.out.println("----------------RedisCacheManager---------------\n\n");
+//        System.out.println(getTtl());
         RedisCacheWriter writer = RedisCacheWriter.nonLockingRedisCacheWriter(factory);
 
 //        FastJsonRedisSerializer<Object> serializer = new FastJsonRedisSerializer<>(Object.class);  //使用fastjson序列化

@@ -5,14 +5,20 @@ package com.qf.forum.proj.controller;
  */
 
 import com.alibaba.fastjson.JSONObject;
+import com.qf.forum.config.aspect.annotation.LoginCheck;
+import com.qf.forum.proj.entity.Account;
 import com.qf.forum.proj.entity.Remark;
 import com.qf.forum.proj.result.Result;
 import com.qf.forum.proj.result.ResultData;
 import com.qf.forum.proj.service.RemarkService;
 import com.qf.forum.utils.CommUtil;
+import com.qf.forum.utils.ResultEnum;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
 
 @RequestMapping("remark")
 @RestController
@@ -26,19 +32,19 @@ public class RemarkController {
     RedisTemplate<Object, Object> redisTemplate;
 
     @PostMapping
-    public Result addRemark(@RequestBody Remark remark) {
+    public Result addRemark(@RequestBody Remark remark, HttpServletRequest request) {
         Result rst = new Result();
         remark.setCreateTime(CommUtil.getNowDateTime());
+        Account account = (Account) request.getSession().getAttribute("uaccount");
+//        remark.setUid(account.getUid());  // 登陆模块写后开放
         remarkService.addRemark(rst, remark);
-
-
-        redisTemplate.opsForValue().set("xjs", "hsahhahfahf需及时发给");
-
         return rst;
     }
 
 
+//    @LoginCheck
     @PostMapping("/test")
+    @Cacheable(value = "remark", key = "#remark.uid")
     public Result testRemark(@RequestBody Remark remark) {
         Result rst = new Result();
         remark.setCreateTime(CommUtil.getNowDateTime());
@@ -49,4 +55,6 @@ public class RemarkController {
 
         return new ResultData("123", "asd", remark);
     }
+
+
 }
