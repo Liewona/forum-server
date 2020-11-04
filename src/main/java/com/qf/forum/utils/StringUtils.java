@@ -12,6 +12,8 @@ import java.util.ResourceBundle;
 public class StringUtils {
 
     public static final String UP_PATH;
+    public static final String IMG_SERVER;
+    public static final String SESSION_KEY;
 
 
     private StringUtils() { }
@@ -19,6 +21,8 @@ public class StringUtils {
     static {
         ResourceBundle resource = ResourceBundle.getBundle("properties/string");
         UP_PATH = resource.getString("up-path");
+        IMG_SERVER =  resource.getString("img-server");
+        SESSION_KEY = resource.getString("session-key");
 
     }
 

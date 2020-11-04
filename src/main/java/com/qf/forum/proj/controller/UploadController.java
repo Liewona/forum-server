@@ -51,7 +51,7 @@ public class UploadController {
 //            return new WangEditorResult(9999);
 //        }
 
-        return new WangEditorResult(0, new String[] { "http://localhost:8087/img/" + filename });
+        return new WangEditorResult(0, new String[] { StringUtils.IMG_SERVER + filename });
     }
 
 }
