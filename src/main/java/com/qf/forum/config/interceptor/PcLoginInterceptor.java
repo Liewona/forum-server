@@ -4,6 +4,8 @@ package com.qf.forum.config.interceptor;
  *   Date = 2020/11/3 0:38
  */
 
-public class PcLoginInterceptor {
+import org.springframework.web.servlet.HandlerInterceptor;
+
+public class PcLoginInterceptor implements HandlerInterceptor {
 
 }

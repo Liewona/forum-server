@@ -20,11 +20,11 @@
 
     <dependencies>
 
-<!--        <dependency>-->
-<!--            <groupId>it.source</groupId>-->
-<!--            <artifactId>ValidateCode</artifactId>-->
-<!--            <version>1.0</version>-->
-<!--        </dependency>-->
+        <dependency>
+            <groupId>it.source</groupId>
+            <artifactId>ValidateCode</artifactId>
+            <version>1.0</version>
+        </dependency>
 
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -91,6 +91,13 @@
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-test</artifactId>
             <scope>test</scope>
+        </dependency>
+        <!--   shriro的核心包   主要在该项目用来完成密码的加密功能-->
+        <!-- https://mvnrepository.com/artifact/org.apache.shiro/shiro-core -->
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-core</artifactId>
+            <version>1.2.3</version>
         </dependency>
     </dependencies>
 

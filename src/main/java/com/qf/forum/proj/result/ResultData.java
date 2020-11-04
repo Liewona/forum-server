@@ -7,6 +7,7 @@ package com.qf.forum.proj.result;
 public class ResultData extends Result {
 
     protected Object data;
+    protected Long count;
 
     public ResultData() {
 
@@ -17,11 +18,26 @@ public class ResultData extends Result {
         this.data = data;
     }
 
+    public ResultData(String code,String msg,Long count,Object data){
+        super(code,msg);
+        this.count = count;
+        this.data = data;
+    }
+
+
     public Object getData() {
         return data;
     }
 
     public void setData(Object data) {
         this.data = data;
+    }
+
+    public Long getCount() {
+        return count;
+    }
+
+    public void setCount(Long count) {
+        this.count = count;
     }
 }
