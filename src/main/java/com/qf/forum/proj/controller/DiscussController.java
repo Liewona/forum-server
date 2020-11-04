@@ -5,13 +5,17 @@ package com.qf.forum.proj.controller;
  */
 
 import com.alibaba.fastjson.JSONObject;
+import com.qf.forum.config.aspect.annotation.LoginCheck;
 import com.qf.forum.proj.dto.DiscussDto;
 import com.qf.forum.proj.entity.Account;
 import com.qf.forum.proj.entity.Discuss;
+import com.qf.forum.proj.entity.UserAccount;
 import com.qf.forum.proj.result.Result;
 import com.qf.forum.proj.result.ResultData;
 import com.qf.forum.proj.service.DiscussService;
+import com.qf.forum.utils.DiscussQuery;
 import com.qf.forum.utils.ResultEnum;
+import com.qf.forum.utils.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.web.bind.annotation.*;
@@ -29,20 +33,21 @@ public class DiscussController {
 
     /**
      * 分页查询所有帖子
-     * @param page
-     * @param limit
      * @return
      */
     @GetMapping
-    public Result selectOnPage(Integer page, Integer limit) {
-        if(page == null || page <= 0) {
-            page = 1;
+    public Result selectDiscuss(DiscussQuery query) {
+        System.out.println(query);
+        if(query.getPage() <= 0) {
+            query.setPage(1);
         }
-        if(limit == null || limit <= 0) {
-            limit = 10;
+        if(query.getLimit() <= 0) {
+            query.setLimit(10);
         }
-        List<DiscussDto> discussDtoList = discussService.selectOnPage(page, limit);
-        return new ResultData("0000", "success", discussDtoList);
+        query.update();
+        List<DiscussDto> discussDtoList = discussService.selectDiscuss(query);
+        int count = discussService.selectCount();
+        return new ResultData(ResultEnum.SUCCESS, discussDtoList, (long) count);
     }
 
     /**
@@ -50,12 +55,14 @@ public class DiscussController {
      * @param body
      * @return
      */
+    @LoginCheck
     @PostMapping
     public Result addDiscuss(@RequestBody JSONObject body, HttpServletRequest request) {
         Result rst = new Result();
 
-        Account account = (Account) request.getSession().getAttribute("uaccount");
-        int uid = account.getUid();
+//        UserAccount account = (UserAccount) request.getSession().getAttribute(StringUtils.SESSION_KEY);
+//        int uid = account.getUid();
+        int uid = body.getIntValue("id");
         String content = body.getString("content");
         String title = body.getString("title");
         Discuss discuss = new Discuss(title, content, uid);
@@ -63,4 +70,10 @@ public class DiscussController {
         return rst.getCode() == null ? new Result(ResultEnum.UNKNOWN) : rst;
     }
 
+
+    @GetMapping("/{id}")
+    public Result selectById(@PathVariable("id") int id) {
+        Discuss discuss =  discussService.selectById(id);
+        return new ResultData(ResultEnum.SUCCESS, discuss);
+    }
 }

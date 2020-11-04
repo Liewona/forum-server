@@ -19,6 +19,7 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @RequestMapping("remark")
 @RestController
@@ -38,6 +39,17 @@ public class RemarkController {
         Account account = (Account) request.getSession().getAttribute("uaccount");
 //        remark.setUid(account.getUid());  // 登陆模块写后开放
         remarkService.addRemark(rst, remark);
+        return rst;
+    }
+
+    @GetMapping("/{did}")
+    public Result selectByDid(@PathVariable("uid") int did) {
+        Result rst = null;
+
+        List<Remark> remarkList = remarkService.selectByDid(did);
+        if(remarkList != null) {
+            rst = new ResultData(ResultEnum.SUCCESS, remarkList);
+        }
         return rst;
     }
 

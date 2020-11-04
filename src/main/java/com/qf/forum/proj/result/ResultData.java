@@ -4,6 +4,11 @@ package com.qf.forum.proj.result;
  *   Date = 2020/11/1 17:04
  */
 
+import com.qf.forum.proj.dto.DiscussDto;
+import com.qf.forum.utils.ResultEnum;
+
+import java.util.List;
+
 public class ResultData extends Result {
 
     protected Object data;
@@ -24,6 +29,16 @@ public class ResultData extends Result {
         this.data = data;
     }
 
+    public ResultData(ResultEnum result, Object data) {
+        super(result);
+        this.data = data;
+    }
+
+    public ResultData(ResultEnum result, Object data, Long count) {
+        super(result);
+        this.data = data;
+        this.count = count;
+    }
 
     public Object getData() {
         return data;

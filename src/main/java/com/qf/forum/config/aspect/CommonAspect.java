@@ -5,6 +5,7 @@ package com.qf.forum.config.aspect;
  */
 
 
+import com.qf.forum.utils.StringUtils;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
@@ -74,13 +75,11 @@ public class CommonAspect {
             for(Object o : args) {
                 if(o instanceof HttpServletRequest) {
                     HttpServletRequest request = (HttpServletRequest) o;
-                    System.out.println(request.getSession().getId());
-                    assert request.getSession().getAttribute("user") != null;
+                    assert request.getSession().getAttribute(StringUtils.SESSION_KEY) != null;
                     obj=pJoinPoint.proceed(args);
                     System.out.println("执行原方法");
                 }
             }
-
         }catch (Throwable throwable){
             throwable.printStackTrace();
         }finally {

@@ -1,36 +1,53 @@
 package com.qf.forum.proj.entity;
+/*
+ *   Author = Liewona
+ *   Date = 2020/11/5 0:55
+ */
 
 public class Reply {
-    private Integer id;
-    protected Integer form;//回复人
-    protected Integer to;//被回复人
-    protected String content;
-    protected String createTime;
-    protected Integer remarkId;
+    private int id;
+    private int fromId;
+    private int toId;
+    private String content;
+    private String createTime;
+    private int remarkId;
 
-    public Integer getId() {
+    @Override
+    public String toString() {
+        return "Reply{" +
+                "id=" + id +
+                ", fromId=" + fromId +
+                ", toId=" + toId +
+                ", content='" + content + '\'' +
+                ", createTime='" + createTime + '\'' +
+                ", remarkId=" + remarkId +
+                '}';
+    }
+
+    public int getFromId() {
+        return fromId;
+    }
+
+    public void setFromId(int fromId) {
+        this.fromId = fromId;
+    }
+
+    public int getToId() {
+        return toId;
+    }
+
+    public void setToId(int toId) {
+        this.toId = toId;
+    }
+
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public Integer getForm() {
-        return form;
-    }
-
-    public void setForm(Integer form) {
-        this.form = form;
-    }
-
-    public Integer getTo() {
-        return to;
-    }
-
-    public void setTo(Integer to) {
-        this.to = to;
-    }
 
     public String getContent() {
         return content;
@@ -48,23 +65,11 @@ public class Reply {
         this.createTime = createTime;
     }
 
-    public Integer getRemarkId() {
+    public int getRemarkId() {
         return remarkId;
     }
 
-    public void setRemarkId(Integer remarkId) {
+    public void setRemarkId(int remarkId) {
         this.remarkId = remarkId;
-    }
-
-    @Override
-    public String toString() {
-        return "Reply{" +
-                "id=" + id +
-                ", form=" + form +
-                ", to=" + to +
-                ", content='" + content + '\'' +
-                ", createTime='" + createTime + '\'' +
-                ", remarkId=" + remarkId +
-                '}';
     }
 }

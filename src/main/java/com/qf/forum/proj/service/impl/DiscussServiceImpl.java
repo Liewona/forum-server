@@ -10,6 +10,7 @@ import com.qf.forum.proj.entity.Discuss;
 import com.qf.forum.proj.mapper.DiscussMapper;
 import com.qf.forum.proj.result.Result;
 import com.qf.forum.proj.service.DiscussService;
+import com.qf.forum.utils.DiscussQuery;
 import com.qf.forum.utils.ResultEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -41,6 +42,21 @@ public class DiscussServiceImpl implements DiscussService {
             rst.reset(ResultEnum.ERROR);
         }
         rst.reset(ResultEnum.SUCCESS);
+    }
+
+    @Override
+    public List<DiscussDto> selectDiscuss(DiscussQuery query) {
+        return discussMapper.selectDiscuss(query);
+    }
+
+    @Override
+    public int selectCount() {
+        return discussMapper.selectCount();
+    }
+
+    @Override
+    public Discuss selectById(int id) {
+        return discussMapper.selectById(id);
     }
 
 }
