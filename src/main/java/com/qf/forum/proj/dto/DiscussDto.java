@@ -7,7 +7,7 @@ package com.qf.forum.proj.dto;
 import com.qf.forum.proj.entity.Discuss;
 
 public class DiscussDto extends Discuss {
-    protected String uname;
+    private String uname;
 
     public String getUname() {
         return uname;
