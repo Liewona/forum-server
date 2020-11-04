@@ -10,10 +10,7 @@ import com.qf.forum.proj.result.ResultData;
 import com.qf.forum.proj.service.ReplyService;
 import com.qf.forum.utils.ResultEnum;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -28,6 +25,16 @@ public class ReplyController {
     public Result selectByRid(@PathVariable("rid") int rid) {
         List<Reply> replies = replyService.selectByRid(rid);
         return new ResultData(ResultEnum.SUCCESS, replies);
+    }
+
+
+    @PostMapping
+    public Result addReply(@RequestBody Reply reply) {
+        int row = replyService.addReply(reply);
+        if(row <= 0) {
+            return new Result(ResultEnum.ERROR);
+        }
+        return new Result(ResultEnum.SUCCESS);
     }
 
 }

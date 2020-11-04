@@ -12,4 +12,5 @@ public interface ReplyService {
 
     List<Reply> selectByRid(int rid);
 
+    int addReply(Reply reply);
 }

@@ -13,6 +13,6 @@ public interface RemarkService {
 
     void addRemark(Result rst, Remark remark);
 
-    List<Remark> selectByUid(int uid);
 
+    List<Remark> selectByDid(int did);
 }

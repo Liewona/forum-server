@@ -22,4 +22,9 @@ public class ReplyServiceImpl implements ReplyService {
     public List<Reply> selectByRid(int rid) {
         return replyMapper.selectByRid(rid);
     }
+
+    @Override
+    public int addReply(Reply reply) {
+        return replyMapper.addReply(reply);
+    }
 }

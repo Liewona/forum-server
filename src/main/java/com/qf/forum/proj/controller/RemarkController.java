@@ -42,21 +42,14 @@ public class RemarkController {
         return rst;
     }
 
-    @GetMapping("/{uid}")
-    public Result selectByUid(@PathVariable("uid") int uid) {
+    @GetMapping("/{did}")
+    public Result selectByDid(@PathVariable("uid") int did) {
         Result rst = null;
 
-        List<Remark> remarkList = remarkService.selectByUid(uid);
-
-        return rst;
-    }
-
-    @GetMapping("/{id}")
-    public Result selectById(@PathVariable("id") int id) {
-        Result rst = null;
-
-//        remarkService.selectById(id);
-
+        List<Remark> remarkList = remarkService.selectByDid(did);
+        if(remarkList != null) {
+            rst = new ResultData(ResultEnum.SUCCESS, remarkList);
+        }
         return rst;
     }
 

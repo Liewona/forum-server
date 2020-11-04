@@ -38,7 +38,7 @@ public class RemarkServiceImpl implements RemarkService {
     }
 
     @Override
-    public List<Remark> selectByUid(int uid) {
-        return remarkMapper.selectByUid(uid);
+    public List<Remark> selectByDid(int uid) {
+        return remarkMapper.selectByDid(uid);
     }
 }

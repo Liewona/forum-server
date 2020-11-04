@@ -15,6 +15,6 @@ public interface RemarkMapper {
     @Insert("INSERT INTO TB_REMARK(DID,CONTENT,CREATE_TIME,UID) VALUES(#{did},#{content},#{createTime},#{uid})")
     int addRemark(Remark remark);
 
-    @Select("SELECT ID,DID,CONTENT,CREATE_TIME,UID FROM TB_REMARK WHERE UID=#{uid}")
-    List<Remark> selectByUid(int uid);
+    @Select("SELECT ID,DID,CONTENT,CREATE_TIME,UID FROM TB_REMARK WHERE DID=#{did}")
+    List<Remark> selectByDid(int did);
 }
