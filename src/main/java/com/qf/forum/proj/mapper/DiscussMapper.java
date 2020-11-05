@@ -8,6 +8,7 @@ import com.qf.forum.proj.dto.DiscussDto;
 import com.qf.forum.proj.entity.Discuss;
 import com.qf.forum.utils.DiscussQuery;
 import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
@@ -33,4 +34,9 @@ public interface DiscussMapper {
 
     @Update("UPDATE TB_DISCUSS SET CLICK_COUNT=CLICK_COUNT+1 WHERE ID=#{id} ")
     void addClick(int id);
+
+    List<DiscussDto> selectDiscussByUserId (@Param("uid") Integer uid,@Param("start") Integer start,@Param("limit") Integer limit);
+
+    @Select("SELECT COUNT(D.ID) FROM TB_DISCUSS D,TB_USER U  WHERE  D.UID=#{uid} and D.UID=U.ID")
+    int selectCountByUserId(Integer uid);
 }

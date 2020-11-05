@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.qf.forum.proj.mapper.DiscussMapper">
-    
+
+
+    <select id="selectDiscussByUserId" parameterType="int" resultType="com.qf.forum.proj.dto.DiscussDto">
+        SELECT D.ID,TITLE,CONTENT,CREATE_TIME,UID,CLICK_COUNT,UNAME,IMG
+        FROM TB_DISCUSS D,TB_USER U
+        WHERE  D.UID = #{uid} and  D.UID = U.ID
+        LIMIT #{start},#{limit}
+    </select>
     
     <select id="selectDiscuss" parameterType="com.qf.forum.utils.DiscussQuery" resultType="com.qf.forum.proj.dto.DiscussDto">
         SELECT D.ID,TITLE,CONTENT,CREATE_TIME,UID,CLICK_COUNT,UNAME,IMG
@@ -17,7 +24,7 @@
         </if>
 
         <if test="type == 'last'">
-            ORDER BY D.ID DESC
+            ORDER BY CREATE_TIME DESC
         </if>
         
         LIMIT #{start},#{limit}

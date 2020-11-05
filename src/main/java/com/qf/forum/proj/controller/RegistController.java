@@ -3,7 +3,6 @@ package com.qf.forum.proj.controller;
 import ch.qos.logback.core.net.SyslogOutputStream;
 import com.qf.forum.proj.dto.UserDto;
 import com.qf.forum.proj.entity.Manager;
-import com.qf.forum.proj.entity.UserAccount;
 import com.qf.forum.proj.result.Result;
 import com.qf.forum.proj.result.ResultData;
 import com.qf.forum.proj.service.ManagerService;

@@ -5,17 +5,17 @@ package com.qf.forum.proj.mapper;
  */
 
 import com.qf.forum.proj.dto.EditDto;
+import com.qf.forum.proj.dto.ReplyDto;
 import com.qf.forum.proj.entity.Reply;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
-import org.springframework.security.core.parameters.P;
 
 import java.util.List;
 
 public interface ReplyMapper {
 
-    @Select("SELECT ID,FORM,TO,CONTENT,CREATE_TIME,REMARK_ID FROM TB_REPLY WHERE REMARK_ID=#{rid}")
-    List<Reply> selectByRid(int rid);
+    @Select("SELECT ID,FROM_ID,TO_ID,CONTENT,CREATE_TIME,REMARK_ID FROM TB_REPLY WHERE REMARK_ID=#{rid}")
+    List<ReplyDto> selectByRid(int rid);
 
     int addReply(Reply reply);
 

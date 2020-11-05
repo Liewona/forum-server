@@ -3,9 +3,7 @@ package com.qf.forum.proj.service;
 import com.qf.forum.proj.dto.UserDto;
 import com.qf.forum.proj.dto.EditDto;
 import com.qf.forum.proj.entity.Account;
-import com.qf.forum.proj.entity.UserAccount;
 import com.qf.forum.proj.result.ResultData;
-import org.springframework.stereotype.Service;
 
 
 public interface UserService {

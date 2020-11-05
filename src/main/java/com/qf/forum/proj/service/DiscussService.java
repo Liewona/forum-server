@@ -7,6 +7,7 @@ package com.qf.forum.proj.service;
 import com.qf.forum.proj.dto.DiscussDto;
 import com.qf.forum.proj.entity.Discuss;
 import com.qf.forum.proj.result.Result;
+import com.qf.forum.proj.result.ResultData;
 import com.qf.forum.utils.DiscussQuery;
 
 import java.util.List;
@@ -22,4 +23,9 @@ public interface DiscussService {
     int selectCount();
 
     DiscussDto selectById(int id);
+
+    public ResultData selectDiscussByUserId(Integer uid ,Integer start , Integer limit);
+
+    /// @Select("SELECT COUNT(D.ID) FROM TB_DISCUSS D,TB_USER U  WHERE  D.UID=#{uid} D.UID=U.ID")
+    ResultData selectCountByUserId();
 }
