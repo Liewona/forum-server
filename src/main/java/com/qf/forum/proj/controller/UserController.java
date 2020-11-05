@@ -6,6 +6,7 @@ import com.qf.forum.proj.dto.EditDto;
 import com.qf.forum.proj.entity.Account;
 import com.qf.forum.proj.result.ResultData;
 import com.qf.forum.proj.service.UserService;
+import com.qf.forum.utils.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -94,13 +95,16 @@ public class UserController {
                 fileName = fileName.substring(fileName.lastIndexOf("\\"));
             }
             // 获取文件存放地址
-            String filePath = "E://Personal code//huRry//forum-server//src//main//resources//static//img//";
+//            String filePath = "E://Personal code//huRry//forum-server//src//main//resources//static//img//";
+            String filePath = StringUtils.UP_PATH;
             File f = new File(filePath);
             if (!f.exists()) {
                 f.mkdirs();// 不存在路径则进行创建
             }
             // 重新自定义文件的名称
-            filePath = filePath + fileName;
+//            filePath = filePath + fileName;
+
+            filePath = "http://localhost:8087/img" + fileName;
             out = new FileOutputStream(filePath);
             out.write(file.getBytes());
             out.flush();
