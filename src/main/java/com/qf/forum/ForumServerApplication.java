@@ -22,6 +22,7 @@ public class ForumServerApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(ForumServerApplication.class, args);
+
     }
 
 }

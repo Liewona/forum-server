@@ -46,7 +46,10 @@ public class DiscussServiceImpl implements DiscussService {
 
     @Override
     public List<DiscussDto> selectDiscuss(DiscussQuery query) {
-        return discussMapper.selectDiscuss(query);
+        List<DiscussDto> list=discussMapper.selectDiscuss(query);
+        for(DiscussDto discussDto :list )
+        System.out.println(discussDto.toString());
+        return list;
     }
 
     @Override
