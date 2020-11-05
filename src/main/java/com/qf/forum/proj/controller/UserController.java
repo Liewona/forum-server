@@ -17,13 +17,13 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @LoginCheck
+    //@LoginCheck
     @RequestMapping(value = "/",method = RequestMethod.GET)
     public ResultData getUserList(HttpServletRequest request, Integer page, Integer limit){
         return userService.getUserList(page,limit);
     }
 
-    @LoginCheck
+    //@LoginCheck
     @RequestMapping(value = "/like",method = RequestMethod.GET)
     public ResultData getUserListLike(HttpServletRequest request,String uname,String phone,Integer page,Integer limit){
         return userService.like(uname,phone,page,limit);

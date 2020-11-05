@@ -5,6 +5,7 @@ import com.qf.forum.proj.entity.Manager;
 import com.qf.forum.proj.entity.UserAccount;
 import com.qf.forum.proj.mapper.ManagerMapper;
 import com.qf.forum.proj.mapper.UserMapper;
+import com.qf.forum.proj.result.Result;
 import com.qf.forum.proj.result.ResultData;
 import com.qf.forum.proj.service.LoginService;
 import com.qf.forum.utils.Md5Util;
@@ -34,9 +35,6 @@ public class LoginServiceImpl implements LoginService {
         ValidateCode validateCode = new ValidateCode(160,40,4,30);
         String code = validateCode.getCode();
         redisTemplate.opsForValue().set(uuid, code, Duration.ofSeconds(120));
-        //System.out.println(code);
-        //request.getSession().setAttribute("code",code);
-        //System.out.println(request.getSession().getId());
         try {
             validateCode.write(response.getOutputStream());
         } catch (IOException e) {
@@ -86,5 +84,11 @@ public class LoginServiceImpl implements LoginService {
         }else{
             return new ResultData("000","验证码错误",null);
         }
+    }
+
+    @Override
+    public Result getManager(String account) {
+        Manager manager = managerMapper.selectByLogin(account);
+        return new ResultData("200","",manager);
     }
 }

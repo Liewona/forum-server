@@ -5,10 +5,13 @@ package com.qf.forum.config.aspect;
  */
 
 
+import com.qf.forum.config.exception.MessageException;
 import com.qf.forum.utils.StringUtils;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,10 +21,12 @@ import java.util.Arrays;
 @Aspect
 public class CommonAspect {
 
+    private Logger log = LoggerFactory.getLogger(this.getClass());
+
     @Pointcut("@annotation(com.qf.forum.config.aspect.annotation.LoginCheck)")
     public void pointCount() {}
 
-    @Before("pointCount()")
+//    @Before("pointCount()")
     public void before(JoinPoint joinPoint){
         System.out.println("前置通知");
         System.out.println("被增强的方法签名-----------"+joinPoint.getSignature());
@@ -75,13 +80,19 @@ public class CommonAspect {
             for(Object o : args) {
                 if(o instanceof HttpServletRequest) {
                     HttpServletRequest request = (HttpServletRequest) o;
-                    assert request.getSession().getAttribute(StringUtils.SESSION_KEY) != null;
+                    log.info(request.getSession().getId());
+                    Object attribute = request.getSession().getAttribute(StringUtils.SESSION_KEY);
+                    if(attribute == null) {
+                        throw new MessageException("未登录，请求被拦截了");
+                    }
+                    log.info(attribute.toString());
                     obj=pJoinPoint.proceed(args);
+                    System.out.println(request.getSession().getAttribute(StringUtils.SESSION_KEY));
                     System.out.println("执行原方法");
                 }
             }
         }catch (Throwable throwable){
-            throwable.printStackTrace();
+            log.error(throwable.getMessage());
         }finally {
             System.out.println("---环绕通知结束---");
         }
