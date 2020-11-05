@@ -29,5 +29,4 @@ public interface UserService {
     ResultData updateAccount(Account account);
 
     ResultData updateByPrimaryKey(UserDto record);
-
 }

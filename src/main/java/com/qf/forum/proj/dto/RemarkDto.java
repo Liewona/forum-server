@@ -1,14 +1,15 @@
 package com.qf.forum.proj.dto;
 /*
  *   Author = Liewona
- *   Date = 2020/11/1 14:54
+ *   Date = 2020/11/5 16:00
  */
 
-import com.qf.forum.proj.entity.Discuss;
+import com.qf.forum.proj.entity.Remark;
 
-public class DiscussDto extends Discuss {
-    protected String uname;
-    protected String img;
+public class RemarkDto extends Remark {
+
+    private String uname;
+    private String img;
 
     public String getUname() {
         return uname;
@@ -26,18 +27,16 @@ public class DiscussDto extends Discuss {
         this.img = img;
     }
 
-
     @Override
     public String toString() {
-        return "DiscussDto{" +
+        return "RemarkDto{" +
                 "uname='" + uname + '\'' +
                 ", img='" + img + '\'' +
                 ", id=" + id +
-                ", title='" + title + '\'' +
+                ", did=" + did +
                 ", content='" + content + '\'' +
                 ", createTime='" + createTime + '\'' +
                 ", uid=" + uid +
-                ", clickCount=" + clickCount +
                 '}';
     }
 }

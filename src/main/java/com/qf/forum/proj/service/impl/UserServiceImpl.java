@@ -63,7 +63,6 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-
     public ResultData selectUserDtoById(Integer id) {
         UserDto userDto =userMapper.selectUserDtoById(id);
         userDto.setPassword("");
@@ -92,8 +91,6 @@ public class UserServiceImpl implements UserService {
     public ResultData updateByPrimaryKey(UserDto record) {
        return null;
     }
-
-
 
     @Override
     public ResultData getUserList(Integer page,Integer limit) {

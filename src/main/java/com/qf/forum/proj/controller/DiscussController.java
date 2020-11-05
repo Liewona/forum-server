@@ -73,7 +73,7 @@ public class DiscussController {
 
     @GetMapping("/{id}")
     public Result selectById(@PathVariable("id") int id) {
-        Discuss discuss =  discussService.selectById(id);
+        DiscussDto discuss =  discussService.selectById(id);
         return new ResultData(ResultEnum.SUCCESS, discuss);
     }
 }

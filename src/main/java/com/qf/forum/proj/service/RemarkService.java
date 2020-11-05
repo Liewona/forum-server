@@ -4,6 +4,7 @@ package com.qf.forum.proj.service;
  *   Date = 2020/11/3 19:48
  */
 
+import com.qf.forum.proj.dto.RemarkDto;
 import com.qf.forum.proj.entity.Remark;
 import com.qf.forum.proj.result.Result;
 
@@ -14,5 +15,5 @@ public interface RemarkService {
     void addRemark(Result rst, Remark remark);
 
 
-    List<Remark> selectByDid(int did);
+    List<RemarkDto> selectByDid(int did);
 }

@@ -4,7 +4,7 @@
     
     
     <select id="selectDiscuss" parameterType="com.qf.forum.utils.DiscussQuery" resultType="com.qf.forum.proj.dto.DiscussDto">
-        SELECT D.ID,TITLE,CONTENT,CREATE_TIME,UID,CLICK_COUNT,UNAME 
+        SELECT D.ID,TITLE,CONTENT,CREATE_TIME,UID,CLICK_COUNT,UNAME,IMG
         FROM TB_DISCUSS D,TB_USER U 
         WHERE D.UID=U.ID
 

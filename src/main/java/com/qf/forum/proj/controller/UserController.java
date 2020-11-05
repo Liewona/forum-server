@@ -122,9 +122,4 @@ public class UserController {
             }
         }
     }
-//    @RequestMapping(value = "/UserInfo" ,method =  RequestMethod.GET)
-//    public ResultData getInfo(HttpServletRequest request,@RequestParam Integer userId){
-//        return  userService.selectUserDtoByUid(userId);
-//    }
-
 }
