@@ -35,7 +35,7 @@ public class commentController {
     @RequestMapping(value = "/",method = RequestMethod.DELETE)
     public ResultData deleteUser(HttpServletRequest request,@RequestBody String[] ids){
         for(String id:ids){
-//            commentService.delete(id);
+            commentService.delete(id);
         }
         return new ResultData("200","删除成功",null);
     }

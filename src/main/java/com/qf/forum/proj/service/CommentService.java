@@ -12,5 +12,5 @@ public interface CommentService {
 
     ResultData searchByTime(String time,Integer page,Integer limit);
 
-//    void delete(String id);
+    void delete(String id);
 }
