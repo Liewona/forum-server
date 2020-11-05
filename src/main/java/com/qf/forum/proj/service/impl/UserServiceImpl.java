@@ -2,6 +2,8 @@ package com.qf.forum.proj.service.impl;
 
 import com.qf.forum.proj.dto.UserDto;
 import com.qf.forum.proj.dto.EditDto;
+import com.qf.forum.proj.entity.Account;
+import com.qf.forum.proj.entity.User;
 import com.qf.forum.proj.entity.UserAccount;
 import com.qf.forum.proj.mapper.UserMapper;
 import com.qf.forum.proj.result.ResultData;
@@ -61,11 +63,34 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public ResultData selectUserDtoByUid(Integer id) {
-        UserDto userDto =userMapper.selectUserDtoByUid(id);
+    public ResultData selectUserDtoById(Integer id) {
+        UserDto userDto =userMapper.selectUserDtoById(id);
+        userDto.setPassword("");
         return new ResultData("0","查询成功",userDto);
     }
 
+    @Override
+    public ResultData updateByPrimaryKeySelective(UserDto record) {
+
+
+        userMapper.updateByPrimaryKeySelective(record);
+        UserDto userDto = userMapper.selectUserDtoById(record.getId());
+        return new ResultData("0","修改成功",userDto);
+    }
+
+    @Override
+    public ResultData updateAccount(Account account) {
+
+        userMapper.updateAccount(account.getPassword(),account.getUid());
+        ResultData resultData = new ResultData();
+        resultData.setCode("0");
+        return resultData;
+    }
+
+    @Override
+    public ResultData updateByPrimaryKey(UserDto record) {
+       return null;
+    }
 
     @Override
     public ResultData getUserList(Integer page,Integer limit) {

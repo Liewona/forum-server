@@ -11,6 +11,7 @@ public interface ManagerMapper {
     @Select("insert into TB_MANAGER(ACCOUNT,NAME,PASSWORD,IMG) VALUES(#{account},#{name},#{password},#{img})")
     void insert(String account, String name, String password, String img);
 
-    @Select("select ACCOUNT,PASSWORD from TB_MANAGER where ACCOUNT = #{account}")
+    @Select("select ACCOUNT,PASSWORD ,NAME from TB_MANAGER where ACCOUNT = #{account}")
     Manager selectByLogin(String account);
+
 }

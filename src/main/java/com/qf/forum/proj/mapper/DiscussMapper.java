@@ -9,6 +9,7 @@ import com.qf.forum.proj.entity.Discuss;
 import com.qf.forum.utils.DiscussQuery;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import java.util.List;
 
@@ -27,6 +28,9 @@ public interface DiscussMapper {
 
     List<DiscussDto> selectDiscuss(DiscussQuery query);
 
-    @Select("SELECT D.ID,TITLE,CONTENT,CREATE_TIME,UID,CLICK_COUNT,UNAME FROM TB_DISCUSS D,TB_USER U WHERE U.ID=#{id}  AND D.UID=U.ID")
-    Discuss selectById(int id);
+    @Select("SELECT D.ID,TITLE,CONTENT,CREATE_TIME,UID,CLICK_COUNT,UNAME,IMG FROM TB_DISCUSS D,TB_USER U WHERE D.ID=#{id}  AND D.UID=U.ID")
+    DiscussDto selectById(int id);
+
+    @Update("UPDATE TB_DISCUSS SET CLICK_COUNT=CLICK_COUNT+1 WHERE ID=#{id} ")
+    void addClick(int id);
 }

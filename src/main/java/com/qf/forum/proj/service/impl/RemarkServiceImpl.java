@@ -5,6 +5,7 @@ package com.qf.forum.proj.service.impl;
  */
 
 import com.qf.forum.config.exception.MessageException;
+import com.qf.forum.proj.dto.RemarkDto;
 import com.qf.forum.proj.entity.Remark;
 import com.qf.forum.proj.mapper.RemarkMapper;
 import com.qf.forum.proj.result.Result;
@@ -38,7 +39,7 @@ public class RemarkServiceImpl implements RemarkService {
     }
 
     @Override
-    public List<Remark> selectByDid(int uid) {
+    public List<RemarkDto> selectByDid(int uid) {
         return remarkMapper.selectByDid(uid);
     }
 }
