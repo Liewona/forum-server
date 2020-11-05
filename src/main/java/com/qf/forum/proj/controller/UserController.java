@@ -102,14 +102,14 @@ public class UserController {
                 f.mkdirs();// 不存在路径则进行创建
             }
             // 重新自定义文件的名称
-//            filePath = filePath + fileName;
+            filePath = filePath + fileName;
 
-            filePath = "http://localhost:8087/img" + fileName;
+//            filePath = "http://localhost:8087/img" + fileName;
             out = new FileOutputStream(filePath);
             out.write(file.getBytes());
             out.flush();
             out.close();
-            map.put("fileName", fileName);
+            map.put("fileName", "http://localhost:8087/img" + fileName);
             Thread.sleep(10000);
             return map;
         } catch (Exception e) {
