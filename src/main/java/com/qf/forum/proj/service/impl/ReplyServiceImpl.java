@@ -4,13 +4,15 @@ package com.qf.forum.proj.service.impl;
  *   Date = 2020/11/5 0:58
  */
 
-import com.qf.forum.proj.dto.CommentDto;
 import com.qf.forum.proj.dto.EditDto;
+import com.qf.forum.proj.dto.ReplyDto;
 import com.qf.forum.proj.entity.Reply;
 import com.qf.forum.proj.mapper.ReplyMapper;
+import com.qf.forum.proj.mapper.UserMapper;
 import com.qf.forum.proj.result.Result;
 import com.qf.forum.proj.result.ResultData;
 import com.qf.forum.proj.service.ReplyService;
+import com.qf.forum.utils.CommUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,13 +25,18 @@ public class ReplyServiceImpl implements ReplyService {
     @Autowired
     private ReplyMapper replyMapper;
 
+
+    @Autowired
+    private UserMapper userMapper;
+
     @Override
-    public List<Reply> selectByRid(int rid) {
+    public List<ReplyDto> selectByRid(int rid) {
         return replyMapper.selectByRid(rid);
     }
 
     @Override
     public int addReply(Reply reply) {
+        reply.setCreateTime(CommUtil.getNowDateTime());
         return replyMapper.addReply(reply);
     }
 
@@ -83,5 +90,26 @@ public class ReplyServiceImpl implements ReplyService {
             replyMapper.delete(id);
         }
         return new ResultData("200",msg,null);
+    }
+
+    @Override
+    public List<ReplyDto> getReplyDtoList(int rid) {
+        List<ReplyDto> replyList = selectByRid(rid);
+        for(ReplyDto reply : replyList) {
+            getAndSetUserName(reply);
+        }
+        return replyList;
+    }
+
+    private void getAndSetUserName(ReplyDto replyDto) {
+        String fromName = userMapper.selectNameById(replyDto.getFromId());
+        replyDto.setFromName(fromName);
+        String toName = userMapper.selectNameById(replyDto.getToId());
+        replyDto.setToName(toName);
+    }
+
+    private void getAndSetFromImg(ReplyDto replyDto) {
+        String path = userMapper.selectImgById(replyDto.getFromId());
+        replyDto.setFromImg(path);
     }
 }

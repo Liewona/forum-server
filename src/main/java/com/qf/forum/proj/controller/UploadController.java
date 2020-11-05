@@ -37,19 +37,19 @@ public class UploadController {
     public Result discussImgUpload(MultipartFile upfile) {
         File file = new File(StringUtils.UP_PATH);
 
-//        if(! file.exists()) {
-//            file.mkdirs();
-//        }
+        if(! file.exists()) {
+            file.mkdirs();
+        }
 
         String filename = upfile.getOriginalFilename();
         filename = UUID.randomUUID().toString().replace("-","").concat(filename);
 
-//        try {
-//            upfile.transferTo(new File(StringUtils.UP_PATH, filename));
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//            return new WangEditorResult(9999);
-//        }
+        try {
+            upfile.transferTo(new File(StringUtils.UP_PATH, filename));
+        } catch (IOException e) {
+            e.printStackTrace();
+            return new WangEditorResult(9999);
+        }
 
         return new WangEditorResult(0, new String[] { StringUtils.IMG_SERVER + filename });
     }

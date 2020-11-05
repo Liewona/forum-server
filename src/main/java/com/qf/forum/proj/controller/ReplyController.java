@@ -6,6 +6,7 @@ package com.qf.forum.proj.controller;
 
 import com.qf.forum.config.aspect.annotation.LoginCheck;
 import com.qf.forum.proj.dto.EditDto;
+import com.qf.forum.proj.dto.ReplyDto;
 import com.qf.forum.proj.entity.Reply;
 import com.qf.forum.proj.result.Result;
 import com.qf.forum.proj.result.ResultData;
@@ -26,7 +27,8 @@ public class ReplyController {
 
     @GetMapping("/{rid}")
     public Result selectByRid(@PathVariable("rid") int rid) {
-        List<Reply> replies = replyService.selectByRid(rid);
+//        List<Reply> replies = replyService.selectByRid(rid);
+        List<ReplyDto> replies = replyService.getReplyDtoList(rid);
         return new ResultData(ResultEnum.SUCCESS, replies);
     }
 

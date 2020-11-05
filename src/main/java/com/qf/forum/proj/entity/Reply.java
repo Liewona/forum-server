@@ -5,12 +5,12 @@ package com.qf.forum.proj.entity;
  */
 
 public class Reply {
-    private int id;
-    private int fromId;
-    private int toId;
-    private String content;
-    private String createTime;
-    private int remarkId;
+    protected int id;
+    protected int fromId;
+    protected int toId;
+    protected String content;
+    protected String createTime;
+    protected int remarkId;
 
     @Override
     public String toString() {

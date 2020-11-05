@@ -56,4 +56,10 @@ public interface UserMapper {
     int updateByPrimaryKeySelective(UserDto record);
 
     int updateByPrimaryKey(UserDto record);
+
+    @Select("SELECT UNAME FROM TB_USER WHERE ID=#{id}")
+    String selectNameById(int id);
+
+    @Select("SELECT IMG FROM TB_USER WHERE ID=#{id}")
+    String selectImgById(int id);
 }

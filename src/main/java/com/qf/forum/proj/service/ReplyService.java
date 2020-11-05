@@ -5,6 +5,7 @@ package com.qf.forum.proj.service;
  */
 
 import com.qf.forum.proj.dto.EditDto;
+import com.qf.forum.proj.dto.ReplyDto;
 import com.qf.forum.proj.entity.Reply;
 import com.qf.forum.proj.result.Result;
 import com.qf.forum.proj.result.ResultData;
@@ -13,7 +14,7 @@ import java.util.List;
 
 public interface ReplyService {
 
-    List<Reply> selectByRid(int rid);
+    List<ReplyDto> selectByRid(int rid);
 
     int addReply(Reply reply);
 
@@ -26,4 +27,7 @@ public interface ReplyService {
     ResultData searchByTime(Integer id, String time, Integer page, Integer limit);
 
     Result delete(Integer[] id);
+
+    List<ReplyDto> getReplyDtoList(int rid);
+
 }

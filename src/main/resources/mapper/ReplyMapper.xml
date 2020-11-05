@@ -4,7 +4,7 @@
 
 
     <insert id="addReply" parameterType="com.qf.forum.utils.DiscussQuery">
-        INSERT INTO TB_REPLY(FORM_ID,
+        INSERT INTO TB_REPLY(FROM_ID,
         <if test="toId > 0">
             TO_ID,
         </if>

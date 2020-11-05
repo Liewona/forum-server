@@ -17,7 +17,7 @@
         </if>
 
         <if test="type == 'last'">
-            ORDER BY D.ID DESC
+            ORDER BY CREATE_TIME DESC
         </if>
         
         LIMIT #{start},#{limit}

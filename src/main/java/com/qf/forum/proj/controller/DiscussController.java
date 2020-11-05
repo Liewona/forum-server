@@ -77,4 +77,5 @@ public class DiscussController {
         DiscussDto discuss =  discussService.selectById(id);
         return new ResultData(ResultEnum.SUCCESS, discuss);
     }
+
 }
