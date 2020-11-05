@@ -17,5 +17,40 @@
         #{content}, #{createTime}, #{remarkId}
         )
     </insert>
+    <select id="likeContent" resultType="com.qf.forum.proj.entity.Reply">
+        select ID,FROM_ID as fromId,TO_ID as toId,CONTENT,CREATE_TIME as createTime,REMARK_ID as remarkId
+        from TB_REPLY where REMARK_ID = #{id}
+        <if test="content != ''">
+            and CONTENT like concat("%",#{content},"%")
+        </if>
+        limit #{page},#{limit}
+    </select>
+    <select id="likeContentCount" resultType="long">
+        select count(ID)
+        from TB_REPLY where REMARK_ID = #{id}
+        <if test="content != ''">
+            and CONTENT like concat("%",#{content},"%")
+        </if>
+    </select>
+
+    <update id="update" parameterType="com.qf.forum.proj.dto.EditDto">
+        update TB_REPLY
+        <if test="field == 'content'">
+            set CONTENT = #{val}
+        </if>
+        where ID = #{id}
+    </update>
+
+    <select id="searchByTime" resultType="com.qf.forum.proj.entity.Reply">
+        select ID,FROM_ID as fromId,TO_ID as toId,CONTENT,CREATE_TIME as createTime,REMARK_ID as remarkId
+        from TB_REPLY
+        where REMARK_ID = #{id}
+        and DATE_FORMAT(CREATE_TIME,"%y-%m-%d") between DATE_FORMAT(#{time},"%y-%m-%d") and DATE_FORMAT(#{time1},"%y-%m-%d") limit #{page},#{limit}
+    </select>
+    <select id="searchByTimeCount" resultType="long">
+        select count(ID) from TB_REPLY
+        where REMARK_ID = #{id}
+        and DATE_FORMAT(CREATE_TIME,"%y-%m-%d") between DATE_FORMAT(#{time},"%y-%m-%d") and DATE_FORMAT(#{time1},"%y-%m-%d")
+    </select>
 
 </mapper>

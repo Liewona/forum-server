@@ -25,4 +25,10 @@ public interface CommentMapper {
     List<CommentDto> searchByTime(@Param("time1") String time1,@Param("time2") String time2,@Param("page") Integer page,@Param("limit") Integer limit);
 
     Long searchByTimeCount(@Param("time1") String time1, @Param("time2") String time2);
+
+    @Select("delete from TB_REMARK where ID = #{id}")
+    void delete(String id);
+
+    @Select("delete from TB_REPLY where REMARK_ID = #{id}")
+    void deleteReply(String id);
 }
