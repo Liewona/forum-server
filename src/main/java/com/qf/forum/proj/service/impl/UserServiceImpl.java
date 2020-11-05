@@ -63,7 +63,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-<<<<<<< HEAD
+
     public ResultData selectUserDtoById(Integer id) {
         UserDto userDto =userMapper.selectUserDtoById(id);
         userDto.setPassword("");
@@ -93,13 +93,7 @@ public class UserServiceImpl implements UserService {
        return null;
     }
 
-=======
-    public ResultData selectUserDtoByUid(Integer id) {
-        UserDto userDto =userMapper.selectUserDtoByUid(id);
-        return new ResultData("0","查询成功",userDto);
-    }
 
->>>>>>> 782d0409b758da0e067f5a2bffcda29a435a327c
 
     @Override
     public ResultData getUserList(Integer page,Integer limit) {
