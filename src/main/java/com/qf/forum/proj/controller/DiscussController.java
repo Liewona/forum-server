@@ -81,7 +81,7 @@ public class DiscussController {
      * @return
      */
     @RequestMapping(value = "/discussByUid" ,method =  RequestMethod.GET)
-    public ResultData getInfo(HttpServletRequest request,@RequestParam Integer userId,@RequestParam Integer begin,@RequestParam Integer limit){
+    public ResultData getInfo(HttpServletRequest request, Integer userId, Integer begin, Integer limit){
         System.out.println(userId);
         return discussService.selectDiscussByUserId(userId,begin,limit);
     }

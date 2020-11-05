@@ -31,9 +31,19 @@ public class LoginController {
     @PostMapping("/logmsg")
     public Result getLoginMessage(HttpServletRequest request) {
         Account user = (Account) request.getSession().getAttribute(StringUtils.SESSION_KEY);
+        if(user == null) {
+            return new Result(ResultEnum.ERROR);
+        }
         user.setPassword(null);
         user.setRegisterTime(null);
         return new ResultData(ResultEnum.SUCCESS, user);
+    }
+
+    @ResponseBody
+    @PostMapping("logout")
+    public Result logout(HttpServletRequest request) {
+        request.getSession().setAttribute(StringUtils.SESSION_KEY, null);
+        return new Result(ResultEnum.SUCCESS);
     }
 
     @RequestMapping(value = "/code" ,method = RequestMethod.GET)
