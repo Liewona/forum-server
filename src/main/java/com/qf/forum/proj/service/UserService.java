@@ -16,4 +16,6 @@ public interface UserService {
     ResultData update(EditDto userEditDto);
 
     ResultData updateByTwo(UserDto userDto);
+
+    ResultData selectUserDtoByUid(Integer id);
 }

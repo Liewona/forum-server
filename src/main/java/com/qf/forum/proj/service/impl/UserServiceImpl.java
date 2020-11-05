@@ -60,6 +60,12 @@ public class UserServiceImpl implements UserService {
         return new ResultData("0","修改成功",null);
     }
 
+    @Override
+    public ResultData selectUserDtoByUid(Integer id) {
+        UserDto userDto =userMapper.selectUserDtoByUid(id);
+        return new ResultData("0","查询成功",userDto);
+    }
+
 
     @Override
     public ResultData getUserList(Integer page,Integer limit) {

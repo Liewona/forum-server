@@ -22,6 +22,9 @@ public interface UserMapper {
     @Select("select id from TB_USER where UNAME = #{uname}")
     UserDto selectUserDtoByUname(String uname);
 
+    @Select("select id from TB_USER where ID = #{id}")
+    UserDto selectUserDtoByUid(Integer id);
+
     @Select("insert into TB_USER(UNAME,REGISTER_TIME,SEX) VALUES(#{uname},#{nowDateTime},#{sex}) ")
     void insertUser(String uname, String nowDateTime,String sex);
 
