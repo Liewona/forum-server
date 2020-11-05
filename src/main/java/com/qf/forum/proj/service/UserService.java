@@ -21,7 +21,7 @@ public interface UserService {
 
     ResultData updateByTwo(UserDto userDto);
 
-<<<<<<< HEAD
+
     ResultData selectUserDtoById(Integer id);
 
     ResultData updateByPrimaryKeySelective(UserDto record);
@@ -29,7 +29,4 @@ public interface UserService {
     ResultData updateAccount(Account account);
 
     ResultData updateByPrimaryKey(UserDto record);
-=======
-    ResultData selectUserDtoByUid(Integer id);
->>>>>>> 782d0409b758da0e067f5a2bffcda29a435a327c
 }

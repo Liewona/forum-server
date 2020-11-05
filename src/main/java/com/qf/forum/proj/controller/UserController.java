@@ -69,7 +69,6 @@ public class UserController {
         return userService.updateByTwo(userDto);
     }
 
-<<<<<<< HEAD
     @RequestMapping(value = "/userInfo" ,method =  RequestMethod.GET)
     public ResultData getInfo(HttpServletRequest request,@RequestParam Integer userId){
         return  userService.selectUserDtoById(userId);
@@ -122,11 +121,5 @@ public class UserController {
                 }
             }
         }
-=======
-    @RequestMapping(value = "/UserInfo" ,method =  RequestMethod.GET)
-    public ResultData getInfo(HttpServletRequest request,@RequestParam Integer userId){
-        return  userService.selectUserDtoByUid(userId);
->>>>>>> 782d0409b758da0e067f5a2bffcda29a435a327c
     }
-
 }
