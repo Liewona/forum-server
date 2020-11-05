@@ -36,7 +36,7 @@ public class UserController {
         return userService.like(uname,phone,page,limit);
     }
 
-    @LoginCheck
+    //@LoginCheck
     @RequestMapping(value = "/",method = RequestMethod.POST)
     public ResultData addUser(HttpServletRequest request,@RequestBody UserDto userDto){
         System.out.println(userDto.getUsername());
@@ -47,7 +47,7 @@ public class UserController {
         return new ResultData("000","新增失败",null);
     }
 
-    @LoginCheck
+    //@LoginCheck
     @RequestMapping(value = "/",method = RequestMethod.DELETE)
     public ResultData deleteUser(HttpServletRequest request,@RequestBody String[] ids){
         for(String id:ids){
@@ -57,13 +57,13 @@ public class UserController {
 
     }
 
-    @LoginCheck
+   // @LoginCheck
     @RequestMapping(value = "/",method = RequestMethod.PATCH)
     public ResultData updateUser(HttpServletRequest request,@RequestBody EditDto userEditDto){
         return userService.update(userEditDto);
     }
 
-    @LoginCheck
+   // @LoginCheck
     @RequestMapping(value = "/twoCondition",method = RequestMethod.PATCH)
     public ResultData updateByTwo(HttpServletRequest request,@RequestBody UserDto userDto){
         return userService.updateByTwo(userDto);

@@ -40,32 +40,32 @@ public class ReplyController {
         return new Result(ResultEnum.SUCCESS);
     }
 
-    @LoginCheck
+    //@LoginCheck
     @RequestMapping(value = "/",method = RequestMethod.GET)
     public ResultData getReplyList(HttpServletRequest request, Integer id, Integer page, Integer limit){
         return replyService.getReplyList(id,page,limit);
     }
 
-    @LoginCheck
+    //@LoginCheck
     @RequestMapping(value = "/like",method = RequestMethod.GET)
     public ResultData like(HttpServletRequest request,String content,Integer id,Integer page,Integer limit){
         return replyService.like(id,content,page,limit);
     }
 
-    @LoginCheck
+    //@LoginCheck
     @RequestMapping(value = "/" ,method = RequestMethod.PATCH)
     public ResultData update(HttpServletRequest request,@RequestBody EditDto editDto){
         return replyService.update(editDto);
     }
 
-    @LoginCheck
+    //@LoginCheck
     @RequestMapping(value = "/time" ,method = RequestMethod.GET)
     public ResultData searchByTime(HttpServletRequest request,String time,Integer id,Integer page,Integer limit){
         System.out.println(time);
         return replyService.searchByTime(id,time,page,limit);
     }
 
-    @LoginCheck
+    //@LoginCheck
     @RequestMapping(value = "/",method = RequestMethod.DELETE)
     public Result delete(HttpServletRequest request, @RequestBody Integer[] ids){
            return replyService.delete(ids);
