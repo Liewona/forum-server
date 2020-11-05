@@ -8,11 +8,11 @@ import com.qf.forum.utils.CommUtil;
 
 public class Remark {
 
-    private int id;
-    private int did;
-    private String content;
-    private String createTime;
-    private int uid;
+    protected int id;
+    protected int did;
+    protected String content;
+    protected String createTime;
+    protected int uid;
 
     public Remark() {
 

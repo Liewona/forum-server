@@ -6,6 +6,7 @@ package com.qf.forum.proj.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.qf.forum.config.aspect.annotation.LoginCheck;
+import com.qf.forum.proj.dto.RemarkDto;
 import com.qf.forum.proj.entity.Account;
 import com.qf.forum.proj.entity.Remark;
 import com.qf.forum.proj.result.Result;
@@ -43,10 +44,10 @@ public class RemarkController {
     }
 
     @GetMapping("/{did}")
-    public Result selectByDid(@PathVariable("uid") int did) {
+    public Result selectByDid(@PathVariable("did") int did) {
         Result rst = null;
 
-        List<Remark> remarkList = remarkService.selectByDid(did);
+        List<RemarkDto> remarkList = remarkService.selectByDid(did);
         if(remarkList != null) {
             rst = new ResultData(ResultEnum.SUCCESS, remarkList);
         }

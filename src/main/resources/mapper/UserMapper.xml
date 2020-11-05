@@ -47,4 +47,38 @@
         </if>
         where ID = #{id}
     </select>
+    <update id="updateByPrimaryKeySelective" parameterType="com.qf.forum.proj.dto.UserDto">
+        update TB_USER
+        <set>
+            <if test="uname != null">
+                UNAME = #{uname,jdbcType=VARCHAR},
+            </if>
+            <if test="phone != null">
+                PHONE = #{phone,jdbcType=VARCHAR},
+            </if>
+            <if test="registerTime != null">
+                REGISTER_TIME = #{registerTime,jdbcType=VARCHAR},
+            </if>
+            <if test="age != null">
+                AGE = #{age,jdbcType=INTEGER},
+            </if>
+            <if test="sex != null">
+                SEX = #{sex,jdbcType=VARCHAR},
+            </if>
+            <if test="img != null">
+                IMG = #{img,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where ID = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.qf.forum.proj.dto.UserDto">
+    update TB_USER
+    set UNAME = #{uname,jdbcType=VARCHAR},
+      PHONE = #{phone,jdbcType=VARCHAR},
+      REGISTER_TIME = #{registerTime,jdbcType=VARCHAR},
+      AGE = #{age,jdbcType=INTEGER},
+      SEX = #{sex,jdbcType=VARCHAR},
+      IMG = #{img,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
 </mapper>

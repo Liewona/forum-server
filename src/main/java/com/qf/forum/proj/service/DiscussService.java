@@ -21,5 +21,5 @@ public interface DiscussService {
 
     int selectCount();
 
-    Discuss selectById(int id);
+    DiscussDto selectById(int id);
 }
