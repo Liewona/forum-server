@@ -13,6 +13,8 @@ import com.qf.forum.utils.ResultEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class RemarkServiceImpl implements RemarkService {
 
@@ -33,5 +35,10 @@ public class RemarkServiceImpl implements RemarkService {
             rst.reset(ResultEnum.ERROR);
         }
         rst.reset(ResultEnum.SUCCESS);
+    }
+
+    @Override
+    public List<Remark> selectByDid(int uid) {
+        return remarkMapper.selectByDid(uid);
     }
 }

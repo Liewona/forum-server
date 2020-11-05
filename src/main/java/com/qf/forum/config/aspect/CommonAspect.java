@@ -5,6 +5,7 @@ package com.qf.forum.config.aspect;
  */
 
 
+import com.qf.forum.utils.StringUtils;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
@@ -66,7 +67,7 @@ public class CommonAspect {
      */
 //    @Around("execution(* com.bug.service.*.*(..))")
     @Around(value = "pointCount()")
-    public void around(ProceedingJoinPoint pJoinPoint){
+    public Object around(ProceedingJoinPoint pJoinPoint){
         System.out.println("----------环绕通知调用方法-----"+pJoinPoint.getSignature().getName());
         Object obj=null;
         Object[] args = pJoinPoint.getArgs();
@@ -74,17 +75,17 @@ public class CommonAspect {
             for(Object o : args) {
                 if(o instanceof HttpServletRequest) {
                     HttpServletRequest request = (HttpServletRequest) o;
-                    assert request.getSession().getAttribute("user") != null;
+                    assert request.getSession().getAttribute(StringUtils.SESSION_KEY) != null;
+                    obj=pJoinPoint.proceed(args);
+                    System.out.println("执行原方法");
                 }
             }
-            obj=pJoinPoint.proceed(args);
-            System.out.println("执行原方法");
         }catch (Throwable throwable){
             throwable.printStackTrace();
         }finally {
             System.out.println("---环绕通知结束---");
         }
-
+        return obj;
     }
 
 

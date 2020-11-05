@@ -7,8 +7,12 @@ package com.qf.forum.proj.service;
 import com.qf.forum.proj.entity.Remark;
 import com.qf.forum.proj.result.Result;
 
+import java.util.List;
+
 public interface RemarkService {
 
     void addRemark(Result rst, Remark remark);
 
+
+    List<Remark> selectByDid(int did);
 }

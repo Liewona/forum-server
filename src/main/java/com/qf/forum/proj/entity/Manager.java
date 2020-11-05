@@ -2,7 +2,7 @@ package com.qf.forum.proj.entity;
 
 public class Manager {
 
-    protected Integer id;
+    private Integer id;
     protected String account;
     protected String name;
     protected String password;

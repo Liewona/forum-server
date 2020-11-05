@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qf.forum.proj.mapper.ReplyMapper">
+
+
+    <insert id="addReply" parameterType="com.qf.forum.utils.DiscussQuery">
+        INSERT INTO TB_REPLY(FORM_ID,
+        <if test="toId > 0">
+            TO_ID,
+        </if>
+
+        CONTENT,CREATE_TIME,REMARK_ID)
+        VALUES (#{fromId},
+        <if test="toId > 0">
+            #{toId},
+        </if>
+        #{content}, #{createTime}, #{remarkId}
+        )
+    </insert>
+    <select id="likeContent" resultType="com.qf.forum.proj.entity.Reply">
+        select ID,FROM_ID as fromId,TO_ID as toId,CONTENT,CREATE_TIME as createTime,REMARK_ID as remarkId
+        from TB_REPLY where REMARK_ID = #{id}
+        <if test="content != ''">
+            and CONTENT like concat("%",#{content},"%")
+        </if>
+        limit #{page},#{limit}
+    </select>
+    <select id="likeContentCount" resultType="long">
+        select count(ID)
+        from TB_REPLY where REMARK_ID = #{id}
+        <if test="content != ''">
+            and CONTENT like concat("%",#{content},"%")
+        </if>
+    </select>
+
+    <update id="update" parameterType="com.qf.forum.proj.dto.EditDto">
+        update TB_REPLY
+        <if test="field == 'content'">
+            set CONTENT = #{val}
+        </if>
+        where ID = #{id}
+    </update>
+
+    <select id="searchByTime" resultType="com.qf.forum.proj.entity.Reply">
+        select ID,FROM_ID as fromId,TO_ID as toId,CONTENT,CREATE_TIME as createTime,REMARK_ID as remarkId
+        from TB_REPLY
+        where REMARK_ID = #{id}
+        and DATE_FORMAT(CREATE_TIME,"%y-%m-%d") between DATE_FORMAT(#{time},"%y-%m-%d") and DATE_FORMAT(#{time1},"%y-%m-%d") limit #{page},#{limit}
+    </select>
+    <select id="searchByTimeCount" resultType="long">
+        select count(ID) from TB_REPLY
+        where REMARK_ID = #{id}
+        and DATE_FORMAT(CREATE_TIME,"%y-%m-%d") between DATE_FORMAT(#{time},"%y-%m-%d") and DATE_FORMAT(#{time1},"%y-%m-%d")
+    </select>
+
+</mapper>

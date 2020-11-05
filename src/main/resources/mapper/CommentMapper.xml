@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qf.forum.proj.mapper.CommentMapper">
+    <select id="like" resultType="com.qf.forum.proj.dto.CommentDto">
+        select TB_REMARK.ID,UNAME,CONTENT,CREATE_TIME as CREATETIME, UID from TB_REMARK , TB_USER
+        where TB_USER.ID = TB_REMARK.UID
+        <if test="content != ''">
+            and CONTENT like concat("%",#{content},"%")
+        </if>
+        limit #{page},#{limit}
+    </select>
+    <select id="getLikeCount" resultType="long">
+        select count(TB_REMARK.ID) from TB_REMARK , TB_USER
+        where TB_USER.ID = TB_REMARK.UID
+        <if test="content != ''">
+            and CONTENT like concat("%",#{content},"%")
+        </if>
+    </select>
+
+    <select id="update" resultType="com.qf.forum.proj.dto.CommentDto">
+        update TB_REMARK
+        <if test="field == 'content'">
+            set CONTENT = #{val}
+        </if>
+        where ID = #{id}
+    </select>
+    <select id="searchByTime" resultType="com.qf.forum.proj.dto.CommentDto">
+        select TB_REMARK.ID,UNAME,CONTENT,CREATE_TIME as CREATETIME, UID from TB_REMARK , TB_USER
+        where TB_USER.ID = TB_REMARK.UID
+        and DATE_FORMAT(CREATE_TIME,"%y-%m-%d") between DATE_FORMAT(#{time1},"%y-%m-%d") and DATE_FORMAT(#{time2},"%y-%m-%d") limit #{page},#{limit}
+    </select>
+    <select id="searchByTimeCount" resultType="long">
+        select count(TB_REMARK.ID) from TB_REMARK , TB_USER
+        where TB_USER.ID = TB_REMARK.UID
+        and DATE_FORMAT(CREATE_TIME,"%y-%m-%d") between DATE_FORMAT(#{time1},"%y-%m-%d") and DATE_FORMAT(#{time2},"%y-%m-%d")
+    </select>
+</mapper>

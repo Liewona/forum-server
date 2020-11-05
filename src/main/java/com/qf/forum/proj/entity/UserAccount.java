@@ -1,7 +1,7 @@
 package com.qf.forum.proj.entity;
 
 public class UserAccount {
-    protected Integer id;
+    private Integer id;
     protected String username;
     protected String password;
     protected Integer uid;

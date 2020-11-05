@@ -6,9 +6,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public interface LoginService {
-    void getCode(HttpServletRequest request, HttpServletResponse response);
+    void getCode(HttpServletRequest request, HttpServletResponse response, String uuid);
 
-    ResultData loginByManager(HttpServletRequest request, String account, String password, String code);
+    ResultData loginByManager(HttpServletRequest request, String account, String password, String code,String uuid);
 
-    ResultData loginByUser(HttpServletRequest request, String account, String password, String code);
+    ResultData loginByUser(HttpServletRequest request, String account, String password, String code,String uuid);
 }
