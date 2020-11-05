@@ -55,7 +55,8 @@ public class DiscussServiceImpl implements DiscussService {
     }
 
     @Override
-    public Discuss selectById(int id) {
+    public DiscussDto selectById(int id) {
+        discussMapper.addClick(id);
         return discussMapper.selectById(id);
     }
 
