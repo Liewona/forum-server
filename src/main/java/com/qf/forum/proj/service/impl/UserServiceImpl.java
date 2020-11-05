@@ -4,7 +4,6 @@ import com.qf.forum.proj.dto.UserDto;
 import com.qf.forum.proj.dto.EditDto;
 import com.qf.forum.proj.entity.Account;
 import com.qf.forum.proj.entity.User;
-import com.qf.forum.proj.entity.UserAccount;
 import com.qf.forum.proj.mapper.UserMapper;
 import com.qf.forum.proj.result.ResultData;
 import com.qf.forum.proj.service.UserService;
@@ -25,7 +24,7 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional
     public boolean registe(UserDto userDto) {
-        UserAccount user1 = userMapper.select(userDto.getUsername());
+        Account user1 = userMapper.select(userDto.getUsername());
         if (user1 != null)
             return false;
         String password = Md5Util.getMd5(userDto.getUsername(),userDto.getPassword());

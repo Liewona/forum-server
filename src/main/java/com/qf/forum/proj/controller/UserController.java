@@ -70,7 +70,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "/userInfo" ,method =  RequestMethod.GET)
-    public ResultData getInfo(HttpServletRequest request,@RequestParam Integer userId){
+    public ResultData getInfo(HttpServletRequest request, Integer userId){
         return  userService.selectUserDtoById(userId);
     }
    // @LoginCheck

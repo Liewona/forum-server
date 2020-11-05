@@ -1,8 +1,7 @@
 package com.qf.forum.proj.mapper;
 
 import com.qf.forum.proj.dto.UserDto;
-import com.qf.forum.proj.entity.Discuss;
-import com.qf.forum.proj.entity.UserAccount;
+import com.qf.forum.proj.entity.Account;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -12,19 +11,19 @@ import java.util.List;
 @Mapper
 public interface UserMapper {
 
-    @Select("select ID,USERNAME,PASSWORD,UID from TB_ACCOUNT where USERNAME = #{account}")
-    UserAccount selectByLogin(String account);
+    @Select("select A.ID,USERNAME,PASSWORD,UID,UNAME,AGE,SEX,PHONE,REGISTER_TIME from TB_ACCOUNT A, TB_USER U where USERNAME = #{account} AND A.UID=U.ID")
+    Account selectByLogin(String account);
 
     @Select("select TB_USER.ID,USERNAME,UNAME,PHONE,REGISTER_TIME as REGISTERTIME,AGE,SEX,IMG from TB_USER,TB_ACCOUNT where TB_USER.ID = TB_ACCOUNT.UID limit #{page}, #{limit}")
     List<UserDto> selectUser(Integer page, Integer limit);
 
     @Select("select id from TB_ACCOUNT where USERNAME = #{username}")
-    UserAccount select(String username);
+    Account select(String username);
 
     @Select("select id from TB_USER where UNAME = #{uname}")
     UserDto selectUserDtoByUname(String uname);
 
-    @Select("select TB_USER.ID,TB_ACCOUNT.USERNAME,UNAME,REGISTER_TIME,PHONE,SEX,AGE,IMG TB_ from TB_USER,TB_ACCOUNT where TB_USER.ID = #{id} and TB_USER.ID = TB_ACCOUNT.UID")
+    @Select("select * from TB_USER where ID = #{id}")
     UserDto selectUserDtoById(Integer id);
 
     @Select("insert into TB_USER(UNAME,REGISTER_TIME,SEX) VALUES(#{uname},#{nowDateTime},#{sex}) ")

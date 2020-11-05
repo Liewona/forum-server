@@ -1,8 +1,8 @@
 package com.qf.forum.proj.service.impl;
 
 import cn.dsna.util.images.ValidateCode;
+import com.qf.forum.proj.entity.Account;
 import com.qf.forum.proj.entity.Manager;
-import com.qf.forum.proj.entity.UserAccount;
 import com.qf.forum.proj.mapper.ManagerMapper;
 import com.qf.forum.proj.mapper.UserMapper;
 import com.qf.forum.proj.result.Result;
@@ -72,7 +72,7 @@ public class LoginServiceImpl implements LoginService {
             return new ResultData("000","验证码已失效，重新刷新后再试",null);
         }
         if (code.trim().equalsIgnoreCase(code1)){
-            UserAccount user = userMapper.selectByLogin(account);
+            Account user = userMapper.selectByLogin(account);
             if(user != null && user.getPassword().equals(Md5Util.getMd5(account,password)) ){
                 request.getSession().setAttribute("user",user);
                 System.out.println(user.toString());

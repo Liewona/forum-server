@@ -9,7 +9,6 @@ import com.qf.forum.config.aspect.annotation.LoginCheck;
 import com.qf.forum.proj.dto.DiscussDto;
 import com.qf.forum.proj.entity.Account;
 import com.qf.forum.proj.entity.Discuss;
-import com.qf.forum.proj.entity.UserAccount;
 import com.qf.forum.proj.result.Result;
 import com.qf.forum.proj.result.ResultData;
 import com.qf.forum.proj.service.DiscussService;
