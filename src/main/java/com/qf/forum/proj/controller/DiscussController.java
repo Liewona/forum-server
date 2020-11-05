@@ -37,7 +37,7 @@ public class DiscussController {
      */
     @GetMapping
     public Result selectDiscuss(DiscussQuery query) {
-        System.out.println(query);
+
         if(query.getPage() <= 0) {
             query.setPage(1);
         }
@@ -45,6 +45,7 @@ public class DiscussController {
             query.setLimit(10);
         }
         query.update();
+        System.out.println(query);
         List<DiscussDto> discussDtoList = discussService.selectDiscuss(query);
         int count = discussService.selectCount();
         return new ResultData(ResultEnum.SUCCESS, discussDtoList, (long) count);
