@@ -75,7 +75,8 @@ public class LoginServiceImpl implements LoginService {
             UserAccount user = userMapper.selectByLogin(account);
             if(user != null && user.getPassword().equals(Md5Util.getMd5(account,password)) ){
                 request.getSession().setAttribute("user",user);
-                return new ResultData("200","登录成功",null);
+                System.out.println(user.toString());
+                return new ResultData("200","登录成功",user);
             }
 
             else

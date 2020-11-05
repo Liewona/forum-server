@@ -37,7 +37,7 @@ public class DiscussController {
      */
     @GetMapping
     public Result selectDiscuss(DiscussQuery query) {
-
+        System.out.println(query);
         if(query.getPage() <= 0) {
             query.setPage(1);
         }
@@ -45,7 +45,6 @@ public class DiscussController {
             query.setLimit(10);
         }
         query.update();
-        System.out.println(query);
         List<DiscussDto> discussDtoList = discussService.selectDiscuss(query);
         int count = discussService.selectCount();
         return new ResultData(ResultEnum.SUCCESS, discussDtoList, (long) count);
@@ -77,5 +76,14 @@ public class DiscussController {
         DiscussDto discuss =  discussService.selectById(id);
         return new ResultData(ResultEnum.SUCCESS, discuss);
     }
-
+    /**
+     * 按uid查找
+     * @param
+     * @return
+     */
+    @RequestMapping(value = "/discussByUid" ,method =  RequestMethod.GET)
+    public ResultData getInfo(HttpServletRequest request,@RequestParam Integer userId,@RequestParam Integer begin,@RequestParam Integer limit){
+        System.out.println(userId);
+        return discussService.selectDiscussByUserId(userId,begin,limit);
+    }
 }

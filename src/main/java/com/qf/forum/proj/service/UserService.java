@@ -3,9 +3,13 @@ package com.qf.forum.proj.service;
 import com.qf.forum.proj.dto.UserDto;
 import com.qf.forum.proj.dto.EditDto;
 import com.qf.forum.proj.entity.Account;
+import com.qf.forum.proj.entity.Discuss;
 import com.qf.forum.proj.entity.UserAccount;
 import com.qf.forum.proj.result.ResultData;
+import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 
 public interface UserService {
@@ -29,4 +33,7 @@ public interface UserService {
     ResultData updateAccount(Account account);
 
     ResultData updateByPrimaryKey(UserDto record);
+
+
+
 }

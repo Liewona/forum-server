@@ -80,10 +80,11 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public ResultData updateAccount(Account account) {
-
-        userMapper.updateAccount(account.getPassword(),account.getUid());
+        String password = Md5Util.getMd5(account.getUsername(),account.getPassword());
+        userMapper.updateAccount(password,account.getUid());
         ResultData resultData = new ResultData();
         resultData.setCode("0");
+        resultData.setMsg("修改成功");
         return resultData;
     }
 

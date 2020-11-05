@@ -1,6 +1,7 @@
 package com.qf.forum.proj.mapper;
 
 import com.qf.forum.proj.dto.UserDto;
+import com.qf.forum.proj.entity.Discuss;
 import com.qf.forum.proj.entity.UserAccount;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -11,7 +12,7 @@ import java.util.List;
 @Mapper
 public interface UserMapper {
 
-    @Select("select ID,USERNAME,PASSWORD from TB_ACCOUNT where USERNAME = #{account}")
+    @Select("select ID,USERNAME,PASSWORD,UID from TB_ACCOUNT where USERNAME = #{account}")
     UserAccount selectByLogin(String account);
 
     @Select("select TB_USER.ID,USERNAME,UNAME,PHONE,REGISTER_TIME as REGISTERTIME,AGE,SEX,IMG from TB_USER,TB_ACCOUNT where TB_USER.ID = TB_ACCOUNT.UID limit #{page}, #{limit}")
@@ -23,7 +24,7 @@ public interface UserMapper {
     @Select("select id from TB_USER where UNAME = #{uname}")
     UserDto selectUserDtoByUname(String uname);
 
-    @Select("select * from TB_USER where ID = #{id}")
+    @Select("select TB_USER.ID,TB_ACCOUNT.USERNAME,UNAME,REGISTER_TIME,PHONE,SEX,AGE,IMG TB_ from TB_USER,TB_ACCOUNT where TB_USER.ID = #{id} and TB_USER.ID = TB_ACCOUNT.UID")
     UserDto selectUserDtoById(Integer id);
 
     @Select("insert into TB_USER(UNAME,REGISTER_TIME,SEX) VALUES(#{uname},#{nowDateTime},#{sex}) ")
